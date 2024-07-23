@@ -40,34 +40,37 @@ def usuarios_con_deuda(request):
 
     return render(request, 'usuarios_con_deuda.html', {'usuarios_con_deuda': usuarios_con_deuda})
 
-#DESCOMENTO ESTO PARA MOSTRAR PERSONAS CON DEUDA.
+
 # @login_required
 # def usuarios_con_deuda(request):
-#     # Usa una fecha futura para simular que estamos en el futuro
-#     fecha_simulada = timezone.now().date() + timedelta(days=30)  # 30 días en el futuro
+#     fecha_actual = timezone.now().date() + timedelta(days=30)
 
 #     prestamos_vencidos = Prestamo.objects.filter(
-#         fechaVencimiento__lt=fecha_simulada,
+#         fechaVencimiento__lt=fecha_actual,
 #         fechaDevolucion__isnull=True
 #     ).select_related('RUTUsuario', 'RUTUsuario__idTipoUsuario', 'codigoLibro')
 
 #     usuarios_con_deuda = []
 #     for prestamo in prestamos_vencidos:
-#         dias_retraso = (fecha_simulada - prestamo.fechaVencimiento).days
+#         dias_retraso = (fecha_actual - prestamo.fechaVencimiento).days
 #         tipo_usuario = prestamo.RUTUsuario.idTipoUsuario.TipoUsuario.lower()
 #         monto_deuda = dias_retraso * 1000  # $1.000 por día de retraso
 
-#         usuarios_con_deuda.append({
-#             'usuario': prestamo.RUTUsuario,
-#             'libro': prestamo.codigoLibro,
-#             'dias_retraso': dias_retraso,
-#             'tipo_usuario': tipo_usuario,
-#             'fecha_vencimiento': prestamo.fechaVencimiento,
-#             'en_deuda': True,
-#             'monto_deuda': monto_deuda
-#         })
+#         if (tipo_usuario == 'alumno' and dias_retraso > 7) or (tipo_usuario == 'docente' and dias_retraso > 20):
+#             usuarios_con_deuda.append({
+#                 'usuario': prestamo.RUTUsuario,
+#                 'libro': prestamo.codigoLibro,
+#                 'dias_retraso': dias_retraso,
+#                 'tipo_usuario': tipo_usuario,
+#                 'fecha_vencimiento': prestamo.fechaVencimiento,
+#                 'en_deuda': True,
+#                 'monto_deuda': monto_deuda
+#             })
 
 #     return render(request, 'usuarios_con_deuda.html', {'usuarios_con_deuda': usuarios_con_deuda})
+
+
+
 
 @login_required
 def devolucion_libro(request):

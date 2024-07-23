@@ -85,7 +85,7 @@ h1 {
     margin-top: 12px;
     border: 2px solid black;
     text-decoration: none;
-    transition: background-color 1s;
+    transition: background-color 0.5s;
 }
 
 .auxiliar:hover {
@@ -105,18 +105,25 @@ h1 {
 .primary {
     background-color: #4a7c59;
     color: white;
+    transition: background-color 0.5s;
+    border: 2px solid black;
 }
 
 .primary:hover{
     background-color: red;
+    
 }
 
 .secondary {
     background-color: white;
     color: black;
+    border: 2px solid black;
+    transition: background-color 0.5s, color 0.5s;
 }
 .secondary:hover{
     background-color: red;
+    color: white;
+    border: 2px solid black;
 }
 
 
