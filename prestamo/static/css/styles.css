@@ -74,13 +74,22 @@ h1 {
 
 .buttons {
     margin-top: 30px;
+    display: flex;
+    justify-content: center;
 }
 
 .auxiliar {
     color: white;
-    background-color: red;
-    padding: 5px;
+    background-color: rgb(188, 29, 29);
+    padding: 8px;
     margin-top: 12px;
+    border: 2px solid black;
+    text-decoration: none;
+    transition: background-color 1s;
+}
+
+.auxiliar:hover {
+    background-color: red;
 }
 
 .button {
@@ -173,7 +182,7 @@ form div {
 
 form label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
 }
 
 form input {
@@ -189,6 +198,7 @@ form button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: 20px;
 }
 
 form button:hover {
@@ -207,9 +217,19 @@ form button:hover {
 table {
     margin: auto;
     font-size: 20px;
-    border: 1px solid;
+    border-collapse: collapse; /* Permite que el border-spacing tenga efecto */
+    border-spacing: 10px; /* Ajusta la separación entre celdas */
     margin-top: 80px;
+    border: 1px solid black; /* Asegúrate de que la tabla tenga un borde */
+    width: 80%; /* Ajusta el ancho de la tabla según sea necesario */
 }
+
+th, td {
+    padding: 10px; 
+    border: 2px solid white; 
+    text-align: center; 
+}
+
 
 .prestamo-details {
     border: 3px solid;

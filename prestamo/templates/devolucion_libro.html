@@ -28,7 +28,8 @@
 {% endif %}
 
 <br> <br>
-    <a class="auxiliar" href="{% url 'index' %}">Volver al inicio</a> 
+<a class="auxiliar" href="{% url 'index' %}">Volver al inicio</a> 
+
 <!-- Script para el confeti -->
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 <script>
@@ -41,7 +42,14 @@
         });
     }
 
-    // Lanzar confeti cuando se carga la página
-    window.onload = lanzarConfeti;
+    // Lanzar confeti si hay un mensaje de éxito
+    document.addEventListener('DOMContentLoaded', function() {
+        var messages = document.querySelectorAll('.messages li');
+        messages.forEach(function(message) {
+            if (message.classList.contains('success')) {
+                lanzarConfeti();
+            }
+        });
+    });
 </script>
 {% endblock %}
