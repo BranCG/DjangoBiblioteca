@@ -12,7 +12,7 @@
 </ul>
 {% endif %}
 
-<form method="post">
+<form id="prestamo-form" method="post">
     {% csrf_token %}
     {{ form.non_field_errors }}
     <div class="form-group">
@@ -28,8 +28,7 @@
     <button type="submit" class="btn btn-primary">Realizar Préstamo</button>
 </form>
 <br> <br>
-    <a class="auxiliar" href="{% url 'index' %}">Volver al inicio</a> 
-
+<a class="auxiliar" href="{% url 'index' %}">Volver al inicio</a>
 
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 <script>
@@ -42,7 +41,33 @@
         });
     }
 
-    // Lanzar confeti cuando se carga la página
-    window.onload = lanzarConfeti;
+    // Función para manejar el envío del formulario
+    document.getElementById('prestamo-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevenir el envío del formulario
+
+        // Crear una solicitud AJAX para enviar el formulario
+        var form = this;
+        var formData = new FormData(form);
+
+        fetch(form.action, {
+            method: form.method,
+            body: formData,
+            headers: {
+                'X-CSRFToken': formData.get('csrfmiddlewaretoken')
+            }
+        })
+        .then(response = {
+            if (response.ok) {
+                lanzarConfeti(); // Llamar a la función de confeti si la respuesta es exitosa
+                form.submit(); // Enviar el formulario después de ejecutar la función de confeti
+            } else {
+                // Manejar el error si la respuesta no es exitosa
+                console.log('Error en el envío del formulario');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
 </script>
 {% endblock %}
