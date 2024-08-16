@@ -1,2 +1,2 @@
 # DjangoBiblioteca
-Proyecto de Taller de desarrollo, de aplicacciones 
+Proyecto de Taller de desarrollo de aplicacciones 
